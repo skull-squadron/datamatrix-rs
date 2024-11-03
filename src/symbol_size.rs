@@ -122,11 +122,19 @@ impl SymbolList {
         self.symbols.contains(symbol_size)
     }
 
-    pub(crate) fn max_capacity(&self) -> usize {
+    pub fn max_capacity(&self) -> usize {
         self.symbols
             .iter()
             .map(|s| s.capacity().max)
             .max()
+            .unwrap_or(0)
+    }
+
+    pub fn min_capacity(&self) -> usize {
+        self.symbols
+            .iter()
+            .map(|s| s.capacity().min)
+            .min()
             .unwrap_or(0)
     }
 
